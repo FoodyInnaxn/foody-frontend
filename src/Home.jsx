@@ -1,13 +1,14 @@
 import { Button, Container, Typography } from "@mui/material";
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "./App";
 
 function Home() {
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
-  const [errorMsg, setErrorMsg] = useState("")
 
-  const navigateToRegister = (id) => {
-    navigate('/register');
+  const navigateToRegister = () => {
+    navigate("/register");
   };
 
   return (
@@ -19,11 +20,17 @@ function Home() {
             Meet the all-in-one app for recipe saving, meal planning, cooking
             workshop, and recipe sharing.
           </Typography>
-          <div style={{ marginTop: "20px" }}>
-            <Button variant="contained" color="primary" onClick={navigateToRegister}>
-              Sign up
-            </Button>
-          </div>
+          {!user && (
+            <div style={{ marginTop: "20px" }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={navigateToRegister}
+              >
+                Sign up
+              </Button>
+            </div>
+          )}
         </div>
         <img
           src="/images/file.png"

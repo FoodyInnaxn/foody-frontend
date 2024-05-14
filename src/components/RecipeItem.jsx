@@ -10,9 +10,8 @@ import {
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Carousel from "react-material-ui-carousel";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import ListIcon from "@mui/icons-material/List";
+import SoupKitchenIcon from "@mui/icons-material/SoupKitchen";
 import { Link } from "react-router-dom";
-
 
 const RecipeCard = styled(Card)({
   width: 300,
@@ -27,8 +26,8 @@ const RecipeCard = styled(Card)({
 
 const CardContentWithHover = styled(CardContent)({
   cursor: "pointer",
-  position: "relative", // Added to make absolute positioning relative to the card content
-  color: "black", // Set text color to black
+  position: "relative",
+  color: "black",
 });
 
 const CardMediaStyled = styled(CardMedia)({
@@ -45,57 +44,45 @@ const FavoriteButton = styled(IconButton)({
   },
 });
 
-const RecipeItem = ({ item, index }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [favoriteCount, setFavoriteCount] = useState(item.numberSaved); 
-
-  const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
-    setFavoriteCount(isFavorite ? favoriteCount - 1 : favoriteCount + 1);
-  };
-  console.log(item.id + 'item' + index)
+const RecipeItem = ({ item }) => {
 
   return (
     <RecipeCard>
-      <Carousel autoPlay={false}>
-        {item.imgUrls.map((image, imageIndex) => (
-          <CardMediaStyled key={imageIndex} image={image} />
-        ))}
+      <Carousel autoPlay={true}>
+        {item.imgUrls.length > 0 ? (
+          item.imgUrls.map((image, imageIndex) => (
+            <CardMediaStyled key={imageIndex} image={image} />
+          ))
+        ) : (
+          <CardMediaStyled image={"/images/noimage.jpg"} />
+        )}
       </Carousel>
       <CardContentWithHover>
-        <Link to={`/recipe/${item.id}`} style={{ textDecoration: "none" }}>
-          {/* Wrap only CardContent with Link and specify route */}
+        <Link to={`/recipe/${item.id}`} style={{ textDecoration: "none", color: "black" }}>
           <Typography variant="h6">{item.title}</Typography>
           <Typography variant="body2" color="textSecondary">
             {item.description}
           </Typography>
-          <div>
+          <div style={{ display: "flex", alignItems: "center", margin:"2px" }}>
             <AccessTimeIcon />
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body2" color="textSecondary" style={{ marginLeft: "0.5rem" }}>
               {item.time}
             </Typography>
-          </div>
-          <div>
-            <ListIcon />
+            <SoupKitchenIcon style={{ marginLeft: "1rem" }} />
             <Typography variant="body2" color="textSecondary">
               {item.ingredients.length} Ingredients
             </Typography>
           </div>
         </Link>
-
-        <FavoriteButton
-          aria-label="add to favorites"
-          onClick={handleFavoriteClick}
-        >
-          <FavoriteIcon color={isFavorite ? "primary" : "inherit"} />
+        <FavoriteButton aria-label="add to favorites" >
+          <FavoriteIcon color={"inherit"} />
           <Typography variant="body2" color="textSecondary">
-            {favoriteCount}
+            {item.numberSaved}
           </Typography>
         </FavoriteButton>
       </CardContentWithHover>
     </RecipeCard>
   );
 };
-
 
 export default RecipeItem;

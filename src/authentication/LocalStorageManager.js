@@ -1,4 +1,3 @@
-import jwt_decode from 'jwt-decode'
 export function SaveToken(token) {
     localStorage.setItem('jwt', token);
 }
@@ -9,8 +8,6 @@ export function GetToken() {
 
 export function DeleteToken() {
     localStorage.removeItem('jwt')
-    // localStorage.removeItem("employeeId")
-    // localStorage.removeItem("patientId")
     localStorage.removeItem("userId")
-    localStorage.removeItem('roles')
+    localStorage.removeItem('role')
 }

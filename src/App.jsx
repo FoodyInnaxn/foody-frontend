@@ -10,6 +10,9 @@ import RecipePage from "./pages/RecipePage";
 import ProfilePage from "./pages/ProfilePage";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { jwtDecode } from 'jwt-decode';
+import RecipeForm from "./pages/RecipeForm";
+import FileUploader from "./pages/FileUploader";
+import EditRecipeForm from "./pages/EditRecipeForm";
 
 export const UserContext = createContext(null);
 
@@ -40,11 +43,14 @@ function App() {
             <Container style={{ flex: 1, paddingBottom: "3rem" }}>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/opa" element={<FileUploader />} />
                 <Route path="/recipe" element={<RecipesOverviewPage />} />
                 <Route path="/recipe/:id" element={<RecipePage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/recipe/:id/operations/create" element={<RecipeForm />} />
+                <Route path="/recipe/update/:id" element={<EditRecipeForm />} />
               </Routes>
             </Container>
             <Footer />

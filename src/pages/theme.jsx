@@ -37,6 +37,9 @@ const theme = createTheme({
   typography: {
     fontFamily: ["Roboto", '"Helvetica Neue"', "Arial", "sans-serif"].join(","),
   },
+  shape: {
+    borderRadius: 50,
+  },
 });
 
 export default theme;
