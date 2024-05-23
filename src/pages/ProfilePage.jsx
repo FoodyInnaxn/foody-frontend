@@ -106,7 +106,7 @@ const ProfilePage = () => {
   return (
     <>
       <RootContainer>
-        <AvatarImage alt={userProfile.firstName} src={userProfile.avatarUrl} />
+        <AvatarImage alt={userProfile?.firstName} src={userProfile?.avatarUrl} />
         {editing ? (
           <>
             <TextField
@@ -139,15 +139,15 @@ const ProfilePage = () => {
         ) : (
           <>
             <Name variant="h5">
-              {userProfile.firstName} {userProfile.lastName}
+              {userProfile?.firstName} {userProfile?.lastName}
             </Name>
             <Typography variant="body1">
-              Username: <b>{userProfile.username}</b>
+              Username: <b>{userProfile?.username}</b>
             </Typography>
             <Typography fontWeight="bold" variant="body1">
-              {userProfile.email}
+              {userProfile?.email}
             </Typography>
-            <Bio variant="body1">About: {userProfile.bio}</Bio>
+            <Bio variant="body1">About: {userProfile?.bio}</Bio>
             <EditButton variant="contained" color="primary" onClick={handleEditProfile}>
               Edit Profile
             </EditButton>
@@ -156,7 +156,6 @@ const ProfilePage = () => {
         )}
          {editing && (
           <>
-            {/* Input fields for editing username and email */}
             <TextField
               label="Username"
               value={username}
@@ -181,10 +180,10 @@ const ProfilePage = () => {
       
       <RecipesContainer>
         <RecipeList>
-          <UserSavedRecipes userId={user.userId} />
+          <UserSavedRecipes userId={user?.userId} />
         </RecipeList>
         <RecipeList>
-          <UserRecipes userId={user.userId} />
+          <UserRecipes userId={user?.userId} />
         </RecipeList>
       </RecipesContainer>
     </>

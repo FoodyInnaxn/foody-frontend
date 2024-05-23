@@ -60,7 +60,20 @@ const RecipeForm = () => {
           formData.append("images", images[i]);
         }
       }
-
+      // Console log the steps and ingredients
+      console.log(
+        "Steps:",
+        JSON.stringify(steps.map((s) => s.text))
+      );
+      console.log(
+        "Ingredients:",
+        JSON.stringify(
+          ingredients.map((ingredient) => ({
+            name: ingredient.name,
+            quantity: ingredient.quantity,
+          }))
+        )
+      );
       await RecipesAPI.createRecipe(formData, user.userId);
       setErrMsg("");
       navigate("/recipe");
@@ -74,7 +87,7 @@ const RecipeForm = () => {
         DeleteToken();
         navigate("/login");
       } else if (error.response.status === 403) {
-        <NotAuthorizedPage/>
+        <NotAuthorizedPage />;
       } else {
         console.log(error);
       }

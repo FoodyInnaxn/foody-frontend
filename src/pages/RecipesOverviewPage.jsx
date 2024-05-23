@@ -5,7 +5,7 @@ import Pagination from "@mui/material/Pagination";
 import { Box } from "@mui/system";
 import SearchComponent from "../components/SearchComponent";
 import RecipesAPI from "../apis/RecipesApi";
-import { Fab } from "@mui/material";
+import { Fab, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
@@ -47,14 +47,22 @@ function RecipesOverviewPage() {
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <h2>Recipes</h2>
-      <SearchComponent/>
-      <div
-        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
-      >
-        {recipes.map((recipe, index) => (
-          <RecipeItem key={index} item={recipe} />
-        ))}
-      </div>
+      <SearchComponent />
+      {recipes.length > 0 ? (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          {recipes.map((recipe, index) => (
+            <RecipeItem key={index} item={recipe} />
+          ))}
+        </div>
+      ) : (
+        <Typography>No Recipes</Typography>
+      )}
       <Stack direction="row" spacing={2}>
         <Box sx={{ flexGrow: 1 }}>
           <Pagination

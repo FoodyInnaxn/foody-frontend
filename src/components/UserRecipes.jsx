@@ -18,8 +18,9 @@ const UserRecipes = ({ userId }) => {
     const fetchCreatedRecipes = async () => {
       try {
         const response = await RecipesAPI.getCreatedRecipes(userId, pageNumber, pageSize);
-        setCreatedRecipes(response.recipes);
-        setTotalPages(response.totalPages);
+        console.log(response);
+        setCreatedRecipes(response.recipes || []);
+        setTotalPages(response.totalPages || 0);
       } catch (error) {
         console.error('Error fetching created recipes:', error);
       }
@@ -54,9 +55,9 @@ const UserRecipes = ({ userId }) => {
         createdRecipes.map((recipe) => (
           <Box key={recipe.id} mb={2} width="100%">
             <Card style={{ height: "100%" }}>
-              {recipe.imgUrls.length > 0 ? (
+              {recipe.imgUrls?.length > 0 ? (
                 <Carousel>
-                  {recipe.urlImages.map((image, index) => (
+                  {recipe.imgUrls.map((image, index) => (
                     <CardMedia
                       key={index}
                       component="img"

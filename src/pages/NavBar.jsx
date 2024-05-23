@@ -94,17 +94,6 @@ function NavBar() {
                   Login
                 </Link>
               </Typography>
-              <Typography variant="h6" sx={{ mr: 2 }}>
-                <Link
-                  to="/opa"
-                  style={{
-                    textDecoration: "none",
-                    color: "inherit",
-                  }}
-                >
-                  opa
-                </Link>
-              </Typography>
               <Typography variant="h6">
                 <Link
                   to="/register"
