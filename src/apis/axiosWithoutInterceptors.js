@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const axiosWithoutInterceptors= ()=> axios.create({baseURL: "http://localhost:8080"})
+export const axiosWithoutInterceptors= ()=> axios.create({baseURL: process.env.HOST_URL})
 
 
 export default axiosWithoutInterceptors
