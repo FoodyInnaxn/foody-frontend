@@ -22,7 +22,7 @@ jobs:
         uses: docker/build-push-action@v5.3.0
         with:
           push: true
-          tags: innaxn/foody-comment-service:testing-latest
+          tags: innaxn/foody-frontend:testing-latest
   redeploy:
       runs-on: self-hosted
       needs: build
