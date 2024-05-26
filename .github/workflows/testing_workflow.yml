@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Testing Workflow
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
         uses: docker/build-push-action@v5.3.0
         with:
           push: true
-          tags: innaxn/foody-frontend
+          tags: innaxn/foody-comment-service:testing-latest
   redeploy:
       runs-on: self-hosted
       needs: build
