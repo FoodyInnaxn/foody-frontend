@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: foody-frontend
-          image: innaxn/foody-frontend:latest
+          image: innaxn/foody-frontend:testing-latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
