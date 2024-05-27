@@ -4,7 +4,7 @@ import { GetToken } from "../authentication/LocalStorageManager";
 // http://localhost:8080
 
 export default () => {
-    const axiosConfig = axios.create({ baseURL: process.env.HOST_URL, withCredentials: true });
+    const axiosConfig = axios.create({ baseURL: '/api', withCredentials: true });
 
     axiosConfig.interceptors.request.use(
         config => {
