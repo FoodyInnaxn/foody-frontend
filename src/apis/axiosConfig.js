@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { GetToken } from "../authentication/LocalStorageManager";
 
-// http://localhost:8080
+//http://localhost:8080
 
 export default () => {
     const axiosConfig = axios.create({ baseURL: '/api', withCredentials: true });
