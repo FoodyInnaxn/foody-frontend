@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foody-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foody-frontend
+  template:
+    metadata:
+      labels:
+        app: foody-frontend
+    spec:
+      containers:
+        - name: foody-frontend
+          image: innaxn/foody-frontend:production-latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: HOST_URL
+              value: foody-api-gateway.default.svc.cluster.local
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: foody-frontend
+spec:
+  selector:
+    app: foody-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
