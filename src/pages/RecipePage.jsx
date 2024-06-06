@@ -167,6 +167,9 @@ const RecipePage = () => {
             <Typography variant="h6" color="text.main">
               Favorite Count: {favoriteCount}
             </Typography>
+            <Typography variant="h6" color="text.main">
+              Rating: {recipe.rating}
+            </Typography>
             <Typography variant="p" color="text.secondary">
               {recipe.description}
             </Typography>
